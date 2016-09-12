@@ -1,0 +1,2 @@
+curl --form "script=@alerts.txt" --form description=Hallo 127.0.1.1:5002/v1/test-script|python -m json.tool
+http://127.0.1.1:5002/v1/test-scripts|python -m json.tool
