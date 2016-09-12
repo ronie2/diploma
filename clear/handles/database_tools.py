@@ -20,6 +20,10 @@ class DatabaseAgent:
         collection = self.db[collection_name]
         return collection.find(pattern)
 
+    def find_one(self, collection_name, pattern=None):
+        collection = self.db[collection_name]
+        return collection.find_one(pattern)
+
     def delete_one(self, collection_name, pattern=None):
         collection = self.db[collection_name]
         return collection.delete_one(pattern)

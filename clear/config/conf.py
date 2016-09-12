@@ -99,7 +99,7 @@ cfg = {
             "config": {
                 "desc": "Start test run for specified ts_id",
                 "method": "POST",
-                "endpoint": "/v1/test-run/{ts_id}",
+                "endpoint": "/v1/add-test-run/{ts_id}",
                 "handle": "TestRunHandler.add_test_run",
                 "timeout": 0,
                 "log_file": "app.log"

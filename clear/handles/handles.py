@@ -1,16 +1,13 @@
-import logging
 import os.path
-from datetime import datetime
-from uuid import uuid4
 
 import aiohttp_jinja2
 
-from aiohttp import web
-from config.conf import cfg, sub_message, logger_msg
+from config.conf import cfg, sub_message
 from handles.plugins import get_log
 
 # import all handles classes
 from handles.test_script import *
+from handles.test_run import *
 
 
 # from book_tree_parser import parse_book
@@ -201,20 +198,6 @@ async def result_handle(request):
                 "status_code": 0,
                 "title": cfg["server"]["result"]["config"]["jinja2"]["title"]
             }
-
-
-class TestRunHandler:
-    def __init__(self):
-        pass
-
-    async def add_test_run(request):
-        return web.Response(text="Hallo, {}".format(request.match_info["ts_id"]))
-
-    async def get_test_runs(request):
-        return web.Response(text="Hallo")
-
-    async def test_run_by_id(request):
-        return web.Response(text="Hallo, {}".format(request.match_info["tr_id"]))
 
 
 class TestResultHandler:
