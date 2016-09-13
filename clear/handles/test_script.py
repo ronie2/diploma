@@ -1,14 +1,15 @@
 import logging
 import os.path
+from copy import deepcopy
 from datetime import datetime
 from uuid import uuid4
 
 from aiohttp import web
-from config.conf import logger_msg
-from handles.database_tools import DatabaseAgent
-from copy import deepcopy
 from bson.json_util import dumps
 from bson.objectid import ObjectId
+
+from handles.conf import logger_msg
+from handles.database_tools import DatabaseAgent
 from handles.general_tools_mixin import get_server_root_folder
 
 

@@ -1,13 +1,9 @@
-from aiohttp import web
-import jinja2
-import aiohttp_jinja2
 import asyncio
 import socket
-import os
-import logging
+
+import jinja2
 
 from handles.handles import *
-from config.conf import cfg, logger_msg
 
 # Creating and initializing basic logger
 logging.basicConfig(format='%(asctime)s %(message)s',

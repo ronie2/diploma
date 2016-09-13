@@ -52,7 +52,7 @@ async def write_log(request, log_file_name="log.log"):
 
 async def sleep(endpoint, method_name):
     import asyncio
-    from config.conf import cfg
+    from handles.conf import cfg
     try:
         await asyncio.sleep( \
             cfg["server"][endpoint][method_name]["timeout"])

@@ -1,6 +1,8 @@
-from config.conf import mongo_cfg
 from copy import deepcopy
+
 from pymongo import MongoClient
+
+from handles.conf import mongo_cfg
 
 
 class DatabaseAgent:

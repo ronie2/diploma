@@ -2,7 +2,7 @@ import os.path
 
 import aiohttp_jinja2
 
-from config.conf import cfg, sub_message
+from handles.conf import cfg, sub_message
 from handles.plugins import get_log
 
 # import all handles classes

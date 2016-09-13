@@ -1,7 +1,10 @@
-curl --form "script=@alerts.txt" --form description=Hallo 127.0.1.1:5002/v1/test-script|python -m json.tool
+curl --form "script=@/home/kali/DIPLOMA/diploma/jmeter_project/HTTP Request.jmx" --form description=Hallo 127.0.1.1:5002/v1/test-script|python -m json.tool
 curl http://127.0.1.1:5002/v1/test-scripts|python -m json.tool
-curl http://127.0.1.1:5002/v1/test-script/57d6c955b179a90715c55f6e|python -m json.tool
+curl http://127.0.1.1:5002/v1/test-script/57d7b0adb179a920af22468b|python -m json.tool
 
-curl -X POST --data "description=Hallo" http://127.0.1.1:5002/v1/add-test-run/57d6c955b179a90715c55f6e|python -m json.tool
+curl -X POST --data "description=Hallo" http://127.0.1.1:5002/v1/add-test-run/57d7b0adb179a920af22468b|python -m json.tool
 curl http://127.0.1.1:5002/v1/test-runs|python -m json.tool
+
+
+sudo mongod& redis-server& sllep 60; rq worker
 

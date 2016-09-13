@@ -8,7 +8,7 @@ from handles.test_script import TestScriptHandler
 from handles.general_tools_mixin import *
 from handles.jmx_runner import JMXRunner
 import os.path
-
+from bson.json_util import dumps
 
 class TestRunHandler:
     def __init__(self):
@@ -27,8 +27,12 @@ class TestRunHandler:
         except Exception as e:
             logging.info("[{uid}] Error while adding test run: {e}".format(
                 uid=job["uid"], e=e))
-        return web.Response(
-            text="Hallo, POST {}".format(request.match_info["ts_id"]))
+        else:
+            return web.Response(text=dumps(job),
+                                content_type="application/json")
+
+            # return web.Response(
+            #     text="Hallo, POST {}".format(request.match_info["ts_id"]))
 
     async def get_test_runs(request):
         return web.Response(text="Hallo")
@@ -40,7 +44,7 @@ class TestRunHandler:
     async def add_test_run_factory(request):
         data = await request.post()
 
-        job = {
+        return {
             "description": data["description"],
             "ts_id": request.match_info["ts_id"],
             "uid": uuid4(),
@@ -48,7 +52,6 @@ class TestRunHandler:
             "finished": None,
             "test_results_path": None
         }
-        return job
 
     async def add_test_run_data_to_db(request=None, job=None):
         data_to_db = deepcopy(job)
