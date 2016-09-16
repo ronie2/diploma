@@ -7,13 +7,7 @@ from handles.plugins import get_log
 
 # import all handles classes
 from handles.test_script import *
-from handles.test_run import *
 
-
-# from book_tree_parser import parse_book
-# from sender import send_email
-# from mongo_search import mongo_search
-# from mongo_parser import mongo_parser
 
 async def parse_validator():
     """parse_validator validates files to be parsed
@@ -53,18 +47,22 @@ async def book_parser_handle(request):
         }
 
         logging.info(logger_msg["parser_got_job"].format(uid=job["uid"],
-                                                         filename=job["filename"],
+                                                         filename=job[
+                                                             "filename"],
                                                          title=job["title"]))
         # content = job["file"].read()
 
         if await parse_validator():
-            logging.info(logger_msg["parser_validator_pass"].format(uid=job["uid"]))
+            logging.info(
+                logger_msg["parser_validator_pass"].format(uid=job["uid"]))
 
             # Create directory for new job
             server_dir = os.path.abspath(__file__ + "/../../")
             db_dir = server_dir + "/db/" + str(job["uid"])
             os.makedirs(db_dir)
-            logging.info(logger_msg["parser_folder_created"].format(uid=job["uid"], foldername=db_dir))
+            logging.info(
+                logger_msg["parser_folder_created"].format(uid=job["uid"],
+                                                           foldername=db_dir))
             file_name = db_dir + "/" + job["filename"]
 
             # Save new job file to folder
@@ -72,21 +70,28 @@ async def book_parser_handle(request):
                 f.write(job["content"])
 
             logging.info(logger_msg["parser_save_file"].format(uid=job["uid"],
-                                                               filename=job["filename"],
+                                                               filename=job[
+                                                                   "filename"],
                                                                foldername=db_dir))
 
-            logging.info(logger_msg["parser_mongo_start"].format(uid=job["uid"]))
+            logging.info(
+                logger_msg["parser_mongo_start"].format(uid=job["uid"]))
             mongo_job = mongo_parser(parse_book(file_name, title=job["title"]))
-            logging.info(logger_msg["parser_mongo_finish"].format(uid=job["uid"], root_id=mongo_job))
+            logging.info(
+                logger_msg["parser_mongo_finish"].format(uid=job["uid"],
+                                                         root_id=mongo_job))
 
             result_string = "File: '{filename}' parsed successfully  to 'roots' collection mongodb with id: {root_id}"
-            return web.Response(body=result_string.format(filename=job["filename"], root_id=mongo_job).encode())
+            return web.Response(
+                body=result_string.format(filename=job["filename"],
+                                          root_id=mongo_job).encode())
 
     # If request metod GET => render jinja form
     if request.method == "GET":
         return {
             "title": cfg["server"]["book_parser"]["config"]["jinja2"]["title"],
-            "legend": cfg["server"]["book_parser"]["config"]["jinja2"]["legend"]
+            "legend": cfg["server"]["book_parser"]["config"]["jinja2"][
+                "legend"]
         }
 
 
@@ -141,19 +146,26 @@ async def result_handle(request):
         # If given email is valid
         elif validate_email(job["request"]["email"], check_mx=True):
             logging.info(logger_msg["valid_request"].format(uid=job["uid"],
-                                                            term=job["request"]["searchinput"],
-                                                            e_mail=job["request"]["email"]))
+                                                            term=
+                                                            job["request"][
+                                                                "searchinput"],
+                                                            e_mail=
+                                                            job["request"][
+                                                                "email"]))
 
             started_at = datetime.now()
             logging.info(logger_msg["search_started"].format(uid=job["uid"],
                                                              time=datetime.now(),
-                                                             time_limit=job["request"]["time"]))
+                                                             time_limit=
+                                                             job["request"][
+                                                                 "time"]))
 
             # Get list of search results 'sub-emails'
             try:
                 result_list = []
                 for item in find_phrase(job["request"]["searchinput"]):
-                    if (item["time"] - started_at).total_seconds() > float(job["request"]["time"]):
+                    if (item["time"] - started_at).total_seconds() > float(
+                            job["request"]["time"]):
                         break
                     else:
                         result_list.append(item["message"])
@@ -161,9 +173,12 @@ async def result_handle(request):
 
             # If can't parse max search time as float => search without time limit
             except Exception as e:
-                logging.info(logger_msg["invalid_max_time"].format(uid=job["uid"], e=e))
-                logging.info(logger_msg["no_time_limit"].format(uid=job["uid"]))
-                result_list = [item["message"] for item in find_phrase(job["request"]["searchinput"])]
+                logging.info(
+                    logger_msg["invalid_max_time"].format(uid=job["uid"], e=e))
+                logging.info(
+                    logger_msg["no_time_limit"].format(uid=job["uid"]))
+                result_list = [item["message"] for item in
+                               find_phrase(job["request"]["searchinput"])]
                 result = "\n".join(result_list)
 
             # Logging job execution time
@@ -177,12 +192,15 @@ async def result_handle(request):
                 result = "Phrase was not found!"
 
             # If validators pass => enqueue e-mail for sending by RQ
-            enqueue_email(result, job["request"]["email"], job["request"]["searchinput"])
+            enqueue_email(result, job["request"]["email"],
+                          job["request"]["searchinput"])
 
             # Return data for 'Results page' to jinja2 template engine
             return {
-                "message": "Search started for this request: " + str(job["request"]["searchinput"]) + "<br>" +
-                           "Results will be sent to this e-mail: " + str(job["request"]["email"]),
+                "message": "Search started for this request: " + str(
+                    job["request"]["searchinput"]) + "<br>" +
+                           "Results will be sent to this e-mail: " + str(
+                    job["request"]["email"]),
                 "status_code": 1,
                 "title": cfg["server"]["result"]["config"]["jinja2"]["title"]
             }
@@ -190,7 +208,9 @@ async def result_handle(request):
         # If given email is NOT valid
         else:
             logging.info(logger_msg["invalid_email"].format(uid=job["uid"],
-                                                            e_mail=job["request"]["email"]))
+                                                            e_mail=
+                                                            job["request"][
+                                                                "email"]))
 
             # Return data for 'Results page' to jinja2 template engine
             return {
@@ -211,7 +231,8 @@ class TestResultHandler:
         return web.Response(text="Hallo")
 
     async def test_result_by_id(request):
-        return web.Response(text="Hallo, {}".format(request.match_info["tres_id"]))
+        return web.Response(
+            text="Hallo, {}".format(request.match_info["tres_id"]))
 
 
 async def log_get(request):
@@ -224,7 +245,8 @@ async def log_get(request):
         Text web response with log string
     """
     if request.method == "GET":
-        return web.Response(text=await get_log(log_file_name=cfg["server"]["app_log"]["config"]["log_file"]))
+        return web.Response(text=await get_log(
+            log_file_name=cfg["server"]["app_log"]["config"]["log_file"]))
 
 
 def find_phrase(search_term):

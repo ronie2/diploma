@@ -95,66 +95,66 @@ cfg = {
                 "log_file": "app.log"
             }
         },
-        "add_test_run": {
-            "config": {
-                "desc": "Start test run for specified ts_id",
-                "method": "POST",
-                "endpoint": "/v1/add-test-run/{ts_id}",
-                "handle": "TestRunHandler.add_test_run",
-                "timeout": 0,
-                "log_file": "app.log"
-            }
-        },
-        "get_test_runs": {
-            "config": {
-                "desc": "Returns list of all test runs in database",
-                "method": "GET",
-                "endpoint": "/v1/test-runs",
-                "handle": "TestRunHandler.get_test_runs",
-                "timeout": 0,
-                "log_file": "app.log"
-            }
-        },
-        "test_run_by_id": {
-            "config": {
-                "desc": "Returns or deletes test runs by ID",
-                "method": "*",
-                "endpoint": "/v1/test-run/{tr_id}",
-                "handle": "TestRunHandler.test_run_by_id",
-                "timeout": 0,
-                "log_file": "app.log"
-            }
-        },
-        "add_test_result": {
-            "config": {
-                "desc": "Adds test result",
-                "method": "POST",
-                "endpoint": "/v1/test-result",
-                "handle": "TestResultHandler.add_test_result",
-                "timeout": 0,
-                "log_file": "app.log"
-            }
-        },
-        "get_test_results": {
-            "config": {
-                "desc": "Returns list of all test results in database",
-                "method": "GET",
-                "endpoint": "/v1/test-results",
-                "handle": "TestResultHandler.get_test_results",
-                "timeout": 0,
-                "log_file": "app.log"
-            }
-        },
-        "test_result_by_id": {
-            "config": {
-                "desc": "Returns or deletes test results by ID",
-                "method": "*",
-                "endpoint": "/v1/test-result/{tres_id}",
-                "handle": "TestResultHandler.test_result_by_id",
-                "timeout": 0,
-                "log_file": "app.log"
-            }
-        },
+        # "add_test_run": {
+        #     "config": {
+        #         "desc": "Start test run for specified ts_id",
+        #         "method": "POST",
+        #         "endpoint": "/v1/add-test-run/{ts_id}",
+        #         "handle": "TestRunHandler.add_test_run",
+        #         "timeout": 0,
+        #         "log_file": "app.log"
+        #     }
+        # },
+        # "get_test_runs": {
+        #     "config": {
+        #         "desc": "Returns list of all test runs in database",
+        #         "method": "GET",
+        #         "endpoint": "/v1/test-runs",
+        #         "handle": "TestRunHandler.get_test_runs",
+        #         "timeout": 0,
+        #         "log_file": "app.log"
+        #     }
+        # },
+        # "test_run_by_id": {
+        #     "config": {
+        #         "desc": "Returns or deletes test runs by ID",
+        #         "method": "*",
+        #         "endpoint": "/v1/test-run/{tr_id}",
+        #         "handle": "TestRunHandler.test_run_by_id",
+        #         "timeout": 0,
+        #         "log_file": "app.log"
+        #     }
+        # },
+        # "add_test_result": {
+        #     "config": {
+        #         "desc": "Adds test result",
+        #         "method": "POST",
+        #         "endpoint": "/v1/test-result",
+        #         "handle": "TestResultHandler.add_test_result",
+        #         "timeout": 0,
+        #         "log_file": "app.log"
+        #     }
+        # },
+        # "get_test_results": {
+        #     "config": {
+        #         "desc": "Returns list of all test results in database",
+        #         "method": "GET",
+        #         "endpoint": "/v1/test-results",
+        #         "handle": "TestResultHandler.get_test_results",
+        #         "timeout": 0,
+        #         "log_file": "app.log"
+        #     }
+        # },
+        # "test_result_by_id": {
+        #     "config": {
+        #         "desc": "Returns or deletes test results by ID",
+        #         "method": "*",
+        #         "endpoint": "/v1/test-result/{tres_id}",
+        #         "handle": "TestResultHandler.test_result_by_id",
+        #         "timeout": 0,
+        #         "log_file": "app.log"
+        #     }
+        # },
     }
 }
 

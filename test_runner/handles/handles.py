@@ -1,0 +1,17 @@
+from handles.conf import cfg
+from handles.plugins import get_log
+from .test_run import TestRunHandler
+
+
+async def log_get(request):
+    """log_app function processes log web interface
+
+    Args:
+        request (aiohttp request): http request
+
+    Returns:
+        Text web response with log string
+    """
+    if request.method == "GET":
+        return web.Response(text=await get_log(
+            log_file_name=cfg["server"]["app_log"]["config"]["log_file"]))

@@ -10,6 +10,7 @@ from handles.jmx_runner import JMXRunner
 import os.path
 from bson.json_util import dumps
 
+
 class TestRunHandler:
     def __init__(self):
         pass
@@ -19,7 +20,9 @@ class TestRunHandler:
         job = await TestRunHandler.add_test_run_factory(request)
         logging.debug("[{uid}] Got new test run job...".format(uid=job["uid"]))
         try:
-            job["test_results_path"] = await TestRunHandler.exectute_test_run(
+            # job["test_results_path"] = await TestRunHandler.execute_test_run(
+            #     request=request, job=job)
+            job["test_results_path"] = await TestRunHandler.execute_test_run(
                 request=request, job=job)
             job["finished"] = datetime.datetime.now()
             await TestRunHandler.add_test_run_data_to_db(request=request,
@@ -68,58 +71,66 @@ class TestRunHandler:
                     uid=job["uid"]))
             return inserted_data.inserted_id
 
-    async def exectute_test_run(request=None, job=None):
-        test_script_id = job["ts_id"]
-        test_run_uid = job["uid"]
-        logging.info("[{uid}] Starting test run...".format(uid=test_run_uid))
-        return await TestRunHandler.run_test_script_by_id(
-            test_script_id=test_script_id,
-            test_run_uid=test_run_uid)
+    async def execute_test_run(request=None, job=None):
+        script_type = "JMeter"
+        if script_type == "JMeter":
+            JMXRunner(
+                script_data=await TestScriptHandler.get_script_data_by_id(job["ts_id"]),
+                request=request,
+                job=job)
 
-    async def run_test_script_by_id(test_script_id=None,
-                                    test_run_uid=None):
-        script_data = await TestScriptHandler.get_script_data_by_id(
-            test_script_id)
-        test_run_folder = await TestRunHandler.prepare_test_run_folder(
-            script_data=script_data,
-            test_run_uid=test_run_uid)
+    # async def exectute_test_run(request=None, job=None):
+    #     test_script_id = job["ts_id"]
+    #     test_run_uid = job["uid"]
+    #     logging.info("[{uid}] Starting test run...".format(uid=test_run_uid))
+    #     return await TestRunHandler.run_test_script_by_id(
+    #         test_script_id=test_script_id,
+    #         test_run_uid=test_run_uid)
 
-        await TestRunHandler.run_test(script_data=script_data,
-                                      test_run_folder=test_run_folder,
-                                      test_run_uid=test_run_uid)
-        return test_run_folder
+    # async def run_test_script_by_id(test_script_id=None,
+    #                                 test_run_uid=None):
+    #     script_data = await TestScriptHandler.get_script_data_by_id(
+    #         test_script_id)
+    #     test_run_folder = await TestRunHandler.prepare_test_run_folder(
+    #         script_data=script_data,
+    #         test_run_uid=test_run_uid)
+    #
+    #     await TestRunHandler.run_test(script_data=script_data,
+    #                                   test_run_folder=test_run_folder,
+    #                                   test_run_uid=test_run_uid)
+    #     return test_run_folder
 
-    async def copy_test_script_to_run_folder(test_script_path=None,
-                                             test_run_folder=None):
+    # async def copy_test_script_to_run_folder(test_script_path=None,
+    #                                          test_run_folder=None):
+    #
+    #     await copy_file_to_folder(file_path=test_script_path,
+    #                               folder_path=test_run_folder)
 
-        await copy_file_to_folder(file_path=test_script_path,
-                                  folder_path=test_run_folder)
+    # async def prepare_test_run_folder(script_data=None, test_run_uid=None):
+    #     test_script_path = script_data["file_path"]
+    #
+    #     test_run_folder_path = await TestRunHandler.create_test_run_folder(
+    #         script_data=script_data,
+    #         test_run_uid=test_run_uid)
+    #
+    #     await TestRunHandler.copy_test_script_to_run_folder(
+    #         test_script_path=test_script_path,
+    #         test_run_folder=test_run_folder_path)
+    #
+    #     return test_run_folder_path
 
-    async def prepare_test_run_folder(script_data=None, test_run_uid=None):
-        test_script_path = script_data["file_path"]
-
-        test_run_folder_path = await TestRunHandler.create_test_run_folder(
-            script_data=script_data,
-            test_run_uid=test_run_uid)
-
-        await TestRunHandler.copy_test_script_to_run_folder(
-            test_script_path=test_script_path,
-            test_run_folder=test_run_folder_path)
-
-        return test_run_folder_path
-
-    async def create_test_run_folder(script_data=None, test_run_uid=None):
-        try:
-            # Create directory for new job
-            server_dir = get_server_root_folder()
-            dir_path = server_dir + "/test_runs/" + str(test_run_uid)
-            os.makedirs(dir_path)
-        except Exception as e:
-            logging.info(
-                "[{uid}] Failed to create folder for test run".format(
-                    uid=test_run_uid))
-        else:
-            return dir_path
+    # async def create_test_run_folder(script_data=None, test_run_uid=None):
+    #     try:
+    #         # Create directory for new job
+    #         server_dir = get_server_root_folder()
+    #         dir_path = server_dir + "/test_runs/" + str(test_run_uid)
+    #         os.makedirs(dir_path)
+    #     except Exception as e:
+    #         logging.info(
+    #             "[{uid}] Failed to create folder for test run".format(
+    #                 uid=test_run_uid))
+    #     else:
+    #         return dir_path
 
     async def run_test(script_data=None,
                        test_run_folder=None,
