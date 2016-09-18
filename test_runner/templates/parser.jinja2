@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<form class="form-horizontal" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>{{ legend }}</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Book Title</label>
+            <div class="col-md-4">
+                <input id="textinput" name="title" placeholder="Book Title" class="form-control input-md"
+                       required="" type="text">
+                <span class="help-block">Please enter book title here! Say: "Dracula"</span>
+            </div>
+        </div>
+
+        <!-- File Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="book">Book File (UTF-8 *.txt)</label>
+            <div class="col-md-4">
+                <input id="book" name="book" class="input-file" type="file">
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit"></label>
+            <div class="col-md-4">
+                <button id="submit_button" type="submit" name="submit_button class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

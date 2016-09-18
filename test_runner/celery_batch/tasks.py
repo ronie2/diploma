@@ -2,9 +2,43 @@ import requests
 import os
 import subprocess
 from bson.json_util import loads
-
+from shutil import rmtree
 from celery_batch.celery import app
+from copy import deepcopy
+import base64
 
+
+@app.task
+def send_test_finish(delete_results_obj, job_uid):
+
+    test_run_achive_path = delete_results_obj["archive_path"]
+
+    def get_test_run_manager_url():
+        return "http://127.0.1.1:5003"
+
+    def get_test_run_manager_job_finish_by_id_url():
+        return "/v1/test-job-finish/{tr_id}"
+
+
+    def get_full_path_to_job_finish(job_uid):
+        return get_full_finish_endpoint().format(tr_id=job_uid)
+
+    def get_full_finish_endpoint():
+        return get_test_run_manager_url() + \
+               get_test_run_manager_job_finish_by_id_url()
+
+    job_finish_url = get_full_path_to_job_finish(job_uid)
+    requests.post(job_finish_url, data={"path": test_run_achive_path})
+
+
+@app.task
+def delete_folder_by_path(delete_results_obj):
+    folder_path = delete_results_obj["folder_path"]
+    try:
+        rmtree(folder_path)
+    except Exception as e:
+        raise Exception("Cannot delete folder: {0}".format(e))
+    return delete_results_obj
 
 @app.task
 def create_test_folder(job_uid):
@@ -107,6 +141,7 @@ def archive_folder_by_path(folder_path):
     arch_file_path = normalised_path + ".tar.gz"
     root_folder_path = os.path.dirname(normalised_path)
     folder_name = os.path.basename(normalised_path)
+
     try:
         task = subprocess.run(["tar", "cvzf", arch_file_path, "-C",
                                root_folder_path, folder_name])
@@ -116,3 +151,7 @@ def archive_folder_by_path(folder_path):
         if task.returncode != 0:
             raise Exception("Something went wrong while archiving folder"
                             "return code by 'tar' is not '0'")
+    return {
+        "folder_path": folder_path,
+        "archive_path": arch_file_path
+    }

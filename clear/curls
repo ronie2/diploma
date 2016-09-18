@@ -1,10 +1,17 @@
-curl --form "script=@/home/kali/DIPLOMA/diploma/jmeter_project/HTTP Request.jmx" --form description=Hallo 127.0.1.1:5002/v1/test-script|python -m json.tool
+curl --form "script=@/home/kali/diploma/jmeter_project/HTTP Request.jmx" --form description=Hallo 127.0.1.1:5002/v1/test-script|python -m json.tool
 curl http://127.0.1.1:5002/v1/test-scripts|python -m json.tool
 curl http://127.0.1.1:5002/v1/test-script/57dab31eb179a976f6372579|python -m json.tool
 
-curl -X POST --data "description=Hallo" http://127.0.1.1:5002/v1/add-test-run/57dab31eb179a976f6372579|python -m json.tool
+curl -X POST --data "description=Hallo" http://127.0.1.1:5003/v1/add-test-run/57dd9b981d41c822826b571e|python -m json.tool
 curl http://127.0.1.1:5002/v1/test-runs|python -m json.tool
 
+curl http://127.0.1.1:5003/v1/test-script/57def87a1d41c87cc84389e0|python -m json.tool
+curl http://127.0.1.1:5003/v1/test-runs|python -m json.tool
 
+curl http://127.0.1.1:5003/v1/test-run/57def87a1d41c87cc84389e0|python -m json.tool
+
+
+
+celery -A celery_batch worker -l info
 sudo mongod& redis-server& sllep 60; rq worker
 

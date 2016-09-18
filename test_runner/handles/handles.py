@@ -1,7 +1,7 @@
 from handles.conf import cfg
 from handles.plugins import get_log
 from .test_run import TestRunHandler
-
+from aiohttp import web
 
 async def log_get(request):
     """log_app function processes log web interface

@@ -36,6 +36,16 @@ cfg = {
                 "log_file": "app.log"
             }
         },
+        "finish_test_run":{
+            "config": {
+                "desc": "Signal for test finish by job uid",
+                "method": "POST",
+                "endpoint": "/v1/test-job-finish/{tr_id}",
+                "handle": "TestRunHandler.test_job_finish",
+                "timeout": 0,
+                "log_file": "app.log"
+            }
+        },
         "get_test_runs": {
             "config": {
                 "desc": "Returns list of all test runs in database",
