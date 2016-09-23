@@ -1,11 +1,38 @@
-09/19/2016 00:28:24 Using selector: EpollSelector
-09/19/2016 00:28:24 Book Search server START...
-09/19/2016 00:28:26 57def87a1d41c87cc84389e0
-09/19/2016 00:28:26 OK Delete Script
-09/19/2016 00:28:26 127.0.0.1 - - [18/Sep/2016:21:28:26 +0000] "DELETE /v1/test-run/57def87a1d41c87cc84389e0 HTTP/1.1" 200 4 "-" "curl/7.45.0"
-09/19/2016 00:28:31 57def87a1d41c87cc84389e0
-09/19/2016 00:28:31 OK Delete Script
-09/19/2016 00:28:31 127.0.0.1 - - [18/Sep/2016:21:28:31 +0000] "DELETE /v1/test-run/57def87a1d41c87cc84389e0 HTTP/1.1" 200 4 "-" "curl/7.45.0"
-09/19/2016 00:28:34 57def87a1d41c87cc84389e0
-09/19/2016 00:28:34 OK Delete Script
-09/19/2016 00:28:34 127.0.0.1 - - [18/Sep/2016:21:28:34 +0000] "DELETE /v1/test-run/57def87a1d41c87cc84389e0 HTTP/1.1" 200 4 "-" "curl/7.45.0"
+09/20/2016 12:37:53 Using selector: EpollSelector
+09/20/2016 12:37:53 Book Search server START...
+09/20/2016 12:37:56 [6be96857-ee97-4747-9ef2-e028f3d63b97] Got new test run job...
+09/20/2016 12:37:56 Start from server, version: 0.9, properties: {'information': 'Licensed under the MPL.  See http://www.rabbitmq.com/', 'version': '3.5.7', 'copyright': 'Copyright (C) 2007-2015 Pivotal Software, Inc.', 'platform': 'Erlang/OTP', 'capabilities': {'consumer_priorities': True, 'per_consumer_qos': True, 'authentication_failure_close': True, 'exchange_exchange_bindings': True, 'connection.blocked': True, 'publisher_confirms': True, 'basic.nack': True, 'consumer_cancel_notify': True}, 'cluster_name': 'rabbit@roman.wa', 'product': 'RabbitMQ'}, mechanisms: ['PLAIN', 'AMQPLAIN'], locales: ['en_US']
+09/20/2016 12:37:56 Open OK!
+09/20/2016 12:37:56 using channel_id: 1
+09/20/2016 12:37:56 Channel open
+09/20/2016 12:37:56 127.0.0.1 - - [20/Sep/2016:16:37:56 +0000] "POST /v1/add-test-run/57dd9b981d41c822826b571e HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:38:56 [ea3d2b2d-22c8-4a53-b6b0-ff4935a65aeb] Got new test run job...
+09/20/2016 12:38:56 127.0.0.1 - - [20/Sep/2016:16:38:56 +0000] "POST /v1/add-test-run/57dd9b981d41c822826b571e HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:40:38 [c01cd15c-f6ca-4e88-ba34-b5c174da9b81] Got new test run job...
+09/20/2016 12:40:38 127.0.0.1 - - [20/Sep/2016:16:40:38 +0000] "POST /v1/add-test-run/57dd9b981d41c822826b571e HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:46:18 [cb4b8fdd-a97d-4e69-8c8c-91f61aae9a9b] Got new test run job...
+09/20/2016 12:46:18 127.0.0.1 - - [20/Sep/2016:16:46:18 +0000] "POST /v1/add-test-run/57dd9b981d41c822826b571e HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:46:37 [e39cdb86-fd88-4f4f-a447-c3fd3adff114] Got new test run job...
+09/20/2016 12:46:37 127.0.0.1 - - [20/Sep/2016:16:46:37 +0000] "POST /v1/add-test-run/57dd9b981d41c822826b571e HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:49:09 [5d360972-c954-4d2b-9e5f-ad0248e8bdbc] Got new test run job...
+09/20/2016 12:49:09 127.0.0.1 - - [20/Sep/2016:16:49:09 +0000] "POST /v1/add-test-run/57dd9b981d41c822826b571e HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:49:23 [e10f6aff-7fd1-49f0-8bea-7d317d1bbdb5] Got new test run job...
+09/20/2016 12:49:23 127.0.0.1 - - [20/Sep/2016:16:49:23 +0000] "POST /v1/add-test-run/57dab31eb179a976f6372579 HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:49:41 [e10f6aff-7fd1-49f0-8bea-7d317d1bbdb5] Test run successfully added to DB
+09/20/2016 12:49:41 127.0.0.1 - - [20/Sep/2016:16:49:41 +0000] "POST /v1/test-job-finish/e10f6aff-7fd1-49f0-8bea-7d317d1bbdb5 HTTP/1.1" 200 355 "-" "python-requests/2.9.1"
+09/20/2016 12:50:44 [52005511-1cdf-42ec-9ef3-a49bf1c7b42e] Got new test run job...
+09/20/2016 12:50:44 127.0.0.1 - - [20/Sep/2016:16:50:44 +0000] "POST /v1/add-test-run/57dab31eb179a976f6372579 HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:51:02 [52005511-1cdf-42ec-9ef3-a49bf1c7b42e] Test run successfully added to DB
+09/20/2016 12:51:02 127.0.0.1 - - [20/Sep/2016:16:51:02 +0000] "POST /v1/test-job-finish/52005511-1cdf-42ec-9ef3-a49bf1c7b42e HTTP/1.1" 200 355 "-" "python-requests/2.9.1"
+09/20/2016 12:51:21 [05c0034a-240c-451c-8de7-62d9d21a18a8] Got new test run job...
+09/20/2016 12:51:21 127.0.0.1 - - [20/Sep/2016:16:51:21 +0000] "POST /v1/add-test-run/57dab31eb179a976f6372579 HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/20/2016 12:51:39 [05c0034a-240c-451c-8de7-62d9d21a18a8] Test run successfully added to DB
+09/20/2016 12:51:39 127.0.0.1 - - [20/Sep/2016:16:51:39 +0000] "POST /v1/test-job-finish/05c0034a-240c-451c-8de7-62d9d21a18a8 HTTP/1.1" 200 355 "-" "python-requests/2.9.1"
+09/22/2016 10:37:35 [3e4c3a48-bcb5-45a2-9a2b-8e1483d73d85] Got new test run job...
+09/22/2016 10:37:35 127.0.0.1 - - [22/Sep/2016:14:37:35 +0000] "POST /v1/add-test-run/57dab31eb179a976f6372579 HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/22/2016 10:37:58 [3e4c3a48-bcb5-45a2-9a2b-8e1483d73d85] Test run successfully added to DB
+09/22/2016 10:37:58 127.0.0.1 - - [22/Sep/2016:14:37:58 +0000] "POST /v1/test-job-finish/3e4c3a48-bcb5-45a2-9a2b-8e1483d73d85 HTTP/1.1" 200 355 "-" "python-requests/2.9.1"
+09/22/2016 11:37:11 [c8e87674-274e-4e77-aee1-b1fef4ca2ce1] Got new test run job...
+09/22/2016 11:37:11 127.0.0.1 - - [22/Sep/2016:15:37:11 +0000] "POST /v1/add-test-run/57dab31eb179a976f6372579 HTTP/1.1" 200 54 "-" "curl/7.45.0"
+09/22/2016 11:37:30 [c8e87674-274e-4e77-aee1-b1fef4ca2ce1] Test run successfully added to DB
+09/22/2016 11:37:30 127.0.0.1 - - [22/Sep/2016:15:37:30 +0000] "POST /v1/test-job-finish/c8e87674-274e-4e77-aee1-b1fef4ca2ce1 HTTP/1.1" 200 355 "-" "python-requests/2.9.1"

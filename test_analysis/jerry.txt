@@ -1,0 +1,79 @@
+
+db.test_results.aggregate(
+   [
+     {
+       $group:
+         {
+           _id: "$rm",
+           avg: { $avg: "$t" }
+         }
+     }
+   ]
+)
+
+//increase memory limit
+db.adminCommand({"setParameter":1, "internalQueryExecMaxBlockingSortBytes": 132417728})
+
+count = db.test_results.count();
+db.test_results.find().sort( {"$t":1} ).skip(count / 2 - 1).limit(1);
+
+
+db.test_results.aggregate(
+  [
+   {
+     $group:
+       {
+         _id: "$rm",
+         max: { $max: "$ts" },
+         min: { $min: "$ts" },
+         avg: { $avg: "$t"},
+         std: { $stdDevPop: "t"}
+       }
+   }
+  ]
+)
+
+
+
+
+db.test_results.aggregate(
+  [
+   {
+     $group:
+       {
+         _id: "$rm",
+         max: { $max: "$t" },
+         min: { $min: "$t" },
+         avg: { $avg: "$t"},
+         std: { $stdDevPop: "t"}
+       }
+   }
+  ]
+)
+
+db.test_results.aggregate(
+  [
+   {
+     $group:
+       {
+         _id: null,
+         max: { $max: "$t" },
+         min: { $min: "$t" },
+         avg: { $avg: "$t"},
+         std: { $stdDevPop: "$t"}
+       }
+   }
+  ]
+)
+
+db.test_results.aggregate(
+   [
+     {
+       $group:
+         {
+           _id: "$rm",
+           avg: { $min: "$t" }
+         }
+     }
+   ]
+)

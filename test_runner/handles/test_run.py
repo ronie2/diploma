@@ -14,6 +14,7 @@ from uuid import UUID
 from .database_tools import DatabaseAgent
 from bson.objectid import ObjectId
 
+
 # class TestRunJob:
 #     def __init__(self):
 
@@ -23,8 +24,6 @@ class TestRunHandler:
 
     def __init__(self):
         pass
-
-
 
     async def add_test_run(request):
         job = await TestRunHandler.create_job_object(request)
@@ -43,7 +42,7 @@ class TestRunHandler:
 
         data = await request.post()
 
-        #logging.info("URL: {}".format(data))
+        # logging.info("URL: {}".format(data))
         test_run_id = request.match_info["tr_id"]
         test_results_path = data["path"]
 
@@ -64,7 +63,6 @@ class TestRunHandler:
         script_cursor = agent.find_all("test_runs")
         return script_cursor
 
-
     async def get_test_runs(request):
         finished_test_runs = await TestRunHandler.get_test_run_data_from_db(
             request
@@ -78,10 +76,8 @@ class TestRunHandler:
         elif request.method == "DELETE":
             return await TestRunHandler.delete_test_run_data(request)
         else:
-            return # web.Response(web.HTTPMethodNotAllowed(request.method))
+            return  # web.Response(web.HTTPMethodNotAllowed(request.method))
 
-                # return web.Response(
-        #     text="Hallo, GET {}".format(request.match_info["tr_id"]))
     async def get_test_run_data(request):
 
         test_run_id = request.match_info["tr_id"]
@@ -96,7 +92,6 @@ class TestRunHandler:
         db_agent = DatabaseAgent()
         return db_agent.find_one("test_runs", {"_id": ObjectId(test_run_id)})
 
-
     async def delete_test_run_data(request):
         try:
             test_run_id = request.match_info["tr_id"]
@@ -107,12 +102,10 @@ class TestRunHandler:
         except Exception as e:
             logging.info("Error while deleting by id: {}".format(e))
 
-
     async def delete_test_run_by_id(test_run_id):
         agent = DatabaseAgent()
         return agent.delete_one("test_runs",
                                 {"_id": ObjectId(test_run_id)})
-
 
     async def get_test_run_script(test_script_id):
         await TestScriptHandler.get_script_data_by_id(test_script_id)

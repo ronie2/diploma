@@ -10,7 +10,6 @@ import base64
 
 @app.task
 def send_test_finish(delete_results_obj, job_uid):
-
     test_run_achive_path = delete_results_obj["archive_path"]
 
     def get_test_run_manager_url():
@@ -18,7 +17,6 @@ def send_test_finish(delete_results_obj, job_uid):
 
     def get_test_run_manager_job_finish_by_id_url():
         return "/v1/test-job-finish/{tr_id}"
-
 
     def get_full_path_to_job_finish(job_uid):
         return get_full_finish_endpoint().format(tr_id=job_uid)
@@ -39,6 +37,7 @@ def delete_folder_by_path(delete_results_obj):
     except Exception as e:
         raise Exception("Cannot delete folder: {0}".format(e))
     return delete_results_obj
+
 
 @app.task
 def create_test_folder(job_uid):
@@ -96,6 +95,7 @@ def copy_file_to_folder(folder_path, test_script_id):
         full_script_path = get_full_path_to_script(file_name, folder_path)
         with open(full_script_path, "x") as f:
             f.write(test_script_content)
+
     except Exception as e:
         raise Exception("Can't copy file to folder: {0}".format(e))
     else:
