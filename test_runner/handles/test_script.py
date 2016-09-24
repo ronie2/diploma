@@ -8,9 +8,9 @@ from aiohttp import web
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 
-from handles.conf import logger_msg
-from handles.database_tools import DatabaseAgent
-from handles.general_tools_mixin import get_server_root_folder
+from .conf import logger_msg
+from .database_tools import DatabaseAgent
+from .general_tools_mixin import get_server_root_folder
 
 
 class TestScriptHandler:

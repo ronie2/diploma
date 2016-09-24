@@ -1,13 +1,13 @@
 from aiohttp import web
 from uuid import uuid4
 import datetime
-from copy import deepcopy
+# from copy import deepcopy
 import logging
-from handles.database_tools import *
-from handles.test_script import TestScriptHandler
-from handles.general_tools_mixin import *
-from handles.jmx_runner import JMXRunner
-import os.path
+from .database_tools import *
+from .test_script import TestScriptHandler
+from .general_tools_mixin import *
+from .jmx_runner import JMXRunner
+# import os.path
 from bson.json_util import dumps
 
 

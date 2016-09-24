@@ -1,5 +1,5 @@
-from handles.conf import cfg
-from handles.plugins import get_log
+from .conf import cfg
+from .plugins import get_log
 from .test_run import TestRunHandler
 from aiohttp import web
 

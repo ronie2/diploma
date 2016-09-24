@@ -3,9 +3,11 @@ import os
 import subprocess
 from bson.json_util import loads
 from shutil import rmtree
-from celery_batch.celery import app
-from copy import deepcopy
-import base64
+from .celery import app
+from ..handles import conf
+# from copy import deepcopy
+# import base64
+
 
 
 @app.task
@@ -13,10 +15,10 @@ def send_test_finish(delete_results_obj, job_uid):
     test_run_achive_path = delete_results_obj["archive_path"]
 
     def get_test_run_manager_url():
-        return "http://127.0.1.1:5003"
+        return conf.test_run_manager_url
 
     def get_test_run_manager_job_finish_by_id_url():
-        return "/v1/test-job-finish/{tr_id}"
+        return conf.test_run_manager_job_finish_by_id_url
 
     def get_full_path_to_job_finish(job_uid):
         return get_full_finish_endpoint().format(tr_id=job_uid)

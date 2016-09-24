@@ -2,11 +2,11 @@ import os.path
 
 import aiohttp_jinja2
 
-from handles.conf import cfg, sub_message
-from handles.plugins import get_log
+from .conf import cfg, sub_message
+from .plugins import get_log
 
 # import all handles classes
-from handles.test_script import *
+from .test_script import *
 
 
 async def parse_validator():

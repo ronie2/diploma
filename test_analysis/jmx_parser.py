@@ -1,6 +1,6 @@
 import re
 import pymongo
-from database_tools import DatabaseAgent
+from .database_tools import DatabaseAgent
 import datetime
 
 start = datetime.datetime.now()

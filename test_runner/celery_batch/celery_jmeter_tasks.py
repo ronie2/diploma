@@ -1,4 +1,4 @@
-from celery_batch.tasks import *
+from .tasks import *
 from celery import chain
 
 

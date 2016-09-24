@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<form class="form-horizontal" action="/result">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend id="page-name">{{ legend }}</legend>
+
+        <!-- Search input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="searchinput"></label>
+            <div class="col-md-4">
+                <input id="searchinput" name="searchinput" type="search" placeholder="What we will search in books?"
+                       class="form-control input-md" required="">
+                <p id="serch-help" class="help-block">Fill in search phrase</p>
+            </div>
+        </div>
+
+        <!-- Search input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="time"></label>
+            <div class="col-md-4">
+                <input id="time" name="time" type="search" placeholder="Say '0.2' or '1.5' or '100.51315'"
+                       class="form-control input-md">
+                <p id="serch-help" class="help-block">Fill in maximum time of search is seconds.microseconds</p>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="email"></label>
+            <div class="col-md-4">
+                <input id="email" name="email" type="text" placeholder="Your e-mail for search results"
+                       class="form-control input-md" required="">
+                <span class="help-block">Please provide your e-mail. We will send search results ASAP!</span>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit_button"></label>
+            <div class="col-md-4">
+                <button id="submit_button" type="submit" name="submit_button" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

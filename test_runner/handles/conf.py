@@ -3,6 +3,11 @@ mongo_cfg = {
     "db_host": None,
     "db_port": None
 }
+
+
+test_run_manager_url = "http://127.0.1.1:5003"
+test_run_manager_job_finish_by_id_url = "/v1/test-job-finish/{tr_id}"
+
 cfg = {
     "service": {
         "home": {

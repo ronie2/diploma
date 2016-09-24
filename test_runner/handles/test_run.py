@@ -1,16 +1,16 @@
 from aiohttp import web
 from uuid import uuid4
 import datetime
-from copy import deepcopy
+# from copy import deepcopy
 import logging
-from handles.database_tools import *
-from handles.test_script import TestScriptHandler
-from handles.general_tools_mixin import *
-from handles.jmx_runner import JMXRunner
-import os.path
+from .database_tools import *
+from .test_script import TestScriptHandler
+# from .general_tools_mixin import *
+# from .jmx_runner import JMXRunner
+# import os.path
 from bson.json_util import dumps
-from celery_batch import celery_jmeter_tasks
-from uuid import UUID
+from ..celery_batch import celery_jmeter_tasks
+# from uuid import UUID
 from .database_tools import DatabaseAgent
 from bson.objectid import ObjectId
 
@@ -150,21 +150,21 @@ class TestRunHandler:
                     uid=job["uid"]))
             return inserted_data.inserted_id
 
-    async def execute_test_run(request=None, job=None):
-        script_type = "JMeter"
-        if script_type == "JMeter":
-            JMXRunner(
-                script_data=await TestScriptHandler.get_script_data_by_id(
-                    job["ts_id"]),
-                request=request,
-                job=job)
-
-    async def run_test(script_data=None,
-                       test_run_folder=None,
-                       test_run_uid=None):
-
-        test_runner = JMXRunner(script_data=script_data,
-                                test_run_folder=test_run_folder,
-                                test_run_uid=test_run_uid)
-
-        await test_runner.run_jmx_test()
+    # async def execute_test_run(request=None, job=None):
+    #     script_type = "JMeter"
+    #     if script_type == "JMeter":
+    #         JMXRunner(
+    #             script_data=await TestScriptHandler.get_script_data_by_id(
+    #                 job["ts_id"]),
+    #             request=request,
+    #             job=job)
+    #
+    # async def run_test(script_data=None,
+    #                    test_run_folder=None,
+    #                    test_run_uid=None):
+    #
+    #     test_runner = JMXRunner(script_data=script_data,
+    #                             test_run_folder=test_run_folder,
+    #                             test_run_uid=test_run_uid)
+    #
+    #     await test_runner.run_jmx_test()

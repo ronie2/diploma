@@ -1,9 +1,9 @@
 import asyncio
 import socket
-import handles
+from . import handles
 import logging
-from handles.conf import *
-from handles.handles import *
+from .handles import *
+# from .handles import handles
 import os
 from aiohttp import web
 import jinja2
